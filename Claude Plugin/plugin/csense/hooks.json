@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \"D:/Claude Plugin/plugin/csense/hooks/scripts/scaffold-conscience.ps1\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"D:/Claude Plugin/plugin/csense/hooks/scripts/sense-check.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

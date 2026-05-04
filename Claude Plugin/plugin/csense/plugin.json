@@ -1,0 +1,12 @@
+{
+  "name": "csense",
+  "version": "0.1.0",
+  "description": "AI has intelligence. Common Sense gives it judgment before it acts. Phase 1a Observe Mode for Claude Code.",
+  "author": {
+    "name": "Ram Chella",
+    "url": "https://csense.us"
+  },
+  "homepage": "https://csense.us",
+  "repository": "https://github.com/ramchella/csense",
+  "license": "Apache-2.0"
+}
