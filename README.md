@@ -1,8 +1,17 @@
 <!--
-  Public README for github.com/ramchella/csense
-  Drop into the repo as README.md.
+  Public README for github.com/ramchella/commonsense
+  Drop into the repo at the ROOT (not inside any subfolder) as README.md.
+  GitHub renders only the root README on the repo homepage.
   This version is honest about what ships today vs. what's coming.
   Last updated: 2026-05-04 by Ram.
+
+  Assumes the repo has been restructured so:
+    plugin/csense/        (was Claude Plugin/plugin/csense/)
+    docs/                 (was Claude Plugin/Docs/)
+    assets/architecture.png
+
+  If you haven't restructured yet, replace `./plugin/csense` below with
+  `"./Claude Plugin/plugin/csense"` (with quotes, because of the space).
 -->
 
 <p align="center">
@@ -16,8 +25,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ramchella/csense/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache_2.0-blue.svg" alt="License: Apache 2.0" /></a>
-  <a href="https://github.com/ramchella/csense/releases"><img src="https://img.shields.io/badge/version-0.1.0--alpha-gold.svg" alt="Version 0.1.0-alpha" /></a>
+  <a href="https://github.com/ramchella/commonsense/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache_2.0-blue.svg" alt="License: Apache 2.0" /></a>
+  <a href="https://github.com/ramchella/commonsense/releases"><img src="https://img.shields.io/badge/version-0.1.0--alpha-gold.svg" alt="Version 0.1.0-alpha" /></a>
   <a href="#-honest-status-what-works-today"><img src="https://img.shields.io/badge/status-Phase_1a_alpha-orange.svg" alt="Phase 1a Alpha" /></a>
   <a href="https://x.com/ramchella"><img src="https://img.shields.io/badge/follow-@ramchella-black.svg" alt="Follow on X" /></a>
   <a href="https://csense.us"><img src="https://img.shields.io/badge/site-csense.us-D4A437.svg" alt="csense.us" /></a>
@@ -83,16 +92,16 @@ It reads a folder of plain Markdown rules on your own computer — your identity
 
 ```bash
 # Clone the repo and install the plugin from a local path.
-git clone https://github.com/ramchella/csense.git
-cd csense
+git clone https://github.com/ramchella/commonsense.git
+cd commonsense
 
 # In Claude Code:
 /plugin install ./plugin/csense
 ```
 
-Your conscience folder scaffolds at `~/.commonsense/private-brain/` on the first session.
+Your conscience folder scaffolds at `~/.csense/conscience/` on the first session.
 
-> **Requirements (today):** Claude Code v1.0+, Python 3.9+, **Windows** (macOS/Linux scaffold script lands this week — see status below).
+> **Requirements:** Claude Code v1.0+, Python 3.9+. Cross-platform: macOS, Linux, Windows.
 
 ---
 
@@ -103,26 +112,26 @@ This is alpha. **v0.1.0-alpha. Phase 1a. Real, but unfinished.** I'm shipping in
 ### ✅ What works today
 
 - Plugin installs as a Claude Code plugin from a local path
-- `SessionStart` hook scaffolds your `~/.commonsense/private-brain/` on Windows
-- `PreToolUse` hook fires on every tool call and runs the SenseCheck
-- Decisions write to `~/.commonsense/private-brain/logs/action-log.jsonl`
-- `/csense-report` produces a digest of catches grouped by decision type
+- Cross-platform: `SessionStart` hook scaffolds your `~/.csense/conscience/` on macOS, Linux, and Windows
+- `PreToolUse` hook fires on `Bash`, `Write`, and `Edit` tool calls and runs the SenseCheck
+- Decisions write to `~/.csense/conscience/logs/action-log.jsonl`
+- `/csense-report` — digest of catches grouped by decision type
+- `/csense-doctor` — five-check health verification of the install
+- `/csense-mode` — read or change the operating mode
 - The Founder archetype ships as the first complete identity seed
-- Trust-tier architecture (Tier 0/1/2/3) is implemented and enforced at the prompt layer
+- Trust-tier architecture (Tier 0/1/2/3) — Tier 3 ingested content cannot reach the SenseCheck as authoritative input
 - **Observe Mode logs everything but never blocks. By design — Phase 1a.**
 
-### 🚧 Work in progress (closing this week)
+### 🚧 Work in progress (toward Phase 1b)
 
-- **macOS / Linux scaffold script.** Today's `scaffold-conscience.ps1` is Windows-only. A `scaffold-conscience.sh` companion ships within the week. **macOS / Linux users: hold off on installing until then, or DM me on X for a manual setup.**
-- **`/csense-doctor`** — health-check command. Skeleton committed; logic lands v0.1.1.
-- **`/csense-mode`** — mode switcher. Skeleton committed; logic lands v0.1.1.
-- **Hook config paths.** `hooks.json` references machine-specific paths in this commit. Migrating to `${CLAUDE_PLUGIN_ROOT}` for portability — landing this week.
-- **`LICENSE` file.** `plugin.json` declares Apache-2.0; the verbatim LICENSE file is being added before the marketplace listing flips public.
+- **Full LLM-powered SenseCheck.** v0.1 evaluates with a fast rule-based pattern matcher (force-push, GPU spin-up, secret patterns, banned tone phrases). v0.1.1 swaps in the full identity-vault evaluator that reads every file in `~/.csense/conscience/identity/` and `~/.csense/conscience/governor/` per call.
+- **Smoke-tested on all three platforms.** v0.1.0 ships cross-platform Python; verified locally on Windows. Mac and Linux smoke tests landing this week.
+- **Public marketplace listing.** Repo is public; marketplace listing flips on launch day (2026-06-16).
 
 ### 🛠 Coming in Phase 1b (late July 2026)
 
 - **Real `BLOCK` enforcement** on critical actions: `rm -rf` on uncommitted work, `git push --force` on main, secret-bearing `Write`s, paid-infra spin-up, production-DB writes
-- Memory versioning (every change to `~/.commonsense/` becomes a Git commit)
+- Memory versioning (every change to `~/.csense/conscience/` becomes a Git commit)
 - `/csense-undo` — walk back a memory write
 - Four more archetypes: Senior Engineer, Platform Engineer, Marketing Operator, Sales Engineer
 
@@ -250,7 +259,7 @@ Claude decides on a tool call (e.g., Bash: rm -rf src)
 PreToolUse hook fires (Claude Code primitive — mandatory)
               │
               ▼
-Common Sense reads ~/.commonsense/private-brain/
+Common Sense reads ~/.csense/conscience/
               │
               ▼
 Runs the SenseCheck — does this action fit who you are?
@@ -269,12 +278,12 @@ Three Claude Code primitives — plugin, hook, slash command — wired together 
 
 ---
 
-## What's in your PrivateBrain
+## What's in your conscience folder
 
 After your first session:
 
 ```
-~/.commonsense/private-brain/
+~/.csense/conscience/
 ├── identity/             ← Tier 0 — who you are
 │   ├── user-identity.md      What you do, who you serve
 │   ├── values.md             What you stand for
@@ -335,8 +344,8 @@ The OSS plugin is the conscience layer. The cloud is what makes it teamable, obs
 
 | Phase | Ships | What |
 |---|---|---|
-| 🟢 **1a — Observe Mode** | Now (alpha) | Plugin watches, logs, never blocks. Founder archetype. /csense-report. |
-| 🚧 **1a polish** | This week | macOS/Linux scaffold. Working /csense-doctor + /csense-mode. LICENSE file. Portable hook paths. |
+| 🟢 **1a — Observe Mode** | Now (alpha) | Cross-platform plugin. Founder archetype. /csense-report, /csense-doctor, /csense-mode. Apache 2.0. |
+| 🚧 **1a polish (v0.1.1)** | Soon | LLM-powered SenseCheck (replaces rule-based pattern matcher). Smoke-tested on macOS + Linux. |
 | ⚙️ **1b — Critical Intercept** | Late July 2026 | Real BLOCK on rm -rf, force-push, secret-commit, paid infra, prod DB. Memory versioning. Undo. 4 more archetypes. |
 | 🔭 **2 — MCP + Cloud Free** | ~3 months | Cursor, ChatGPT Desktop, Antigravity via MCP. Free cloud account. |
 | 🏛 **3 — Enterprise Control Plane** | ~9 months | Org governor. Fleet observability. SSO. Compliance. On-prem. |
@@ -351,7 +360,7 @@ Three high-leverage ways to help right now.
 
 **1. Add an archetype.** Pick a role you understand — Lawyer, Teacher, Doctor, Indie Hacker, DevRel, Therapist, Journalist. Mirror the Founder archetype's structure. Submit a PR. **The fastest way to make Common Sense useful for someone who isn't already covered.** Marked as `good first issue`.
 
-**2. Improve the SenseCheck prompt.** The single most important file in the repo is `plugin/csense/hooks/scripts/sense-check.py`. If you can make the prompt produce *better* decisions on the same inputs, that's pure value.
+**2. Improve the SenseCheck prompt.** The single most important file in the repo is [`plugin/csense/hooks/scripts/sense-check.py`](plugin/csense/hooks/scripts/sense-check.py). If you can make the prompt produce *better* decisions on the same inputs, that's pure value.
 
 **3. Tell me what your agent almost did.** Open a discussion or DM [@ramchella](https://x.com/ramchella). Every real flag — anonymized — becomes a story I share, a rule we add, and a lesson the prompt learns from.
 
@@ -364,10 +373,10 @@ We use [CLA Assistant](https://cla-assistant.io/) for contributions. First PR wa
 I'm Ram Chella, founder of Common Sense. **Building this in public.**
 
 - 🐦 X (DMs open) → [@ramchella](https://x.com/ramchella)
-- 💬 Discussions → [github.com/ramchella/csense/discussions](https://github.com/ramchella/csense/discussions)
+- 💬 Discussions → [github.com/ramchella/commonsense/discussions](https://github.com/ramchella/commonsense/discussions)
 - 📬 Email → ram@csense.us
 - 🌐 Site → [csense.us](https://csense.us)
-- 🎬 The launch video → [YouTube video](https://youtu.be/AnFGmX1-KgM)
+- 🎬 The launch video → [csense.us/video](https://csense.us/video)
 
 If your team is dealing with agents in real workflows and you want to be a design partner, drop a message. Phase 1a alpha is by invitation; ~3 spots left.
 
@@ -385,5 +394,5 @@ If your team is dealing with agents in real workflows and you want to be a desig
 </p>
 
 <p align="center">
-  <a href="https://csense.us">Common Sense</a> · <a href="https://x.com/chellabuilds">@chellabuilds</a> · 2026
+  <a href="https://csense.us">Common Sense</a> · <a href="https://x.com/ramchella">@ramchella</a> · 2026
 </p>

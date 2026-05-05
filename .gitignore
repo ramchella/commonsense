@@ -1,0 +1,53 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Local Claude Code settings
+.claude/settings.local.json
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.python-version
+*.egg-info/
+dist/
+build/
+
+# Node (in case anything later)
+node_modules/
+npm-debug.log*
+
+# Test artifacts / local dev
+*.log
+.env
+.env.local
+.env.*.local
+
+# Common Sense local artifacts (these should never be in the repo)
+**/conscience/
+**/private-brain/
+**/action-log.jsonl

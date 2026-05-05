@@ -175,7 +175,7 @@ Path: `plugin/csense/.claude-plugin/plugin.json`
     "url": "https://csense.us"
   },
   "homepage": "https://csense.us",
-  "repository": "https://github.com/ramchella/csense",
+  "repository": "https://github.com/ramchella/commonsense",
   "license": "Apache-2.0"
 }
 ```
