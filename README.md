@@ -373,7 +373,6 @@ We use [CLA Assistant](https://cla-assistant.io/) for contributions. First PR wa
 I'm Ram Chella, founder of Common Sense. **Building this in public.**
 
 - 🐦 X (DMs open) → [@ramchella](https://x.com/ramchella)
-- 💬 Discussions → [github.com/ramchella/commonsense/discussions](https://github.com/ramchella/commonsense/discussions)
 - 📬 Email → ram@csense.us
 - 🌐 Site → [csense.us](https://csense.us)
 - 🎬 The launch video → [csense.us/video](https://csense.us/video)
