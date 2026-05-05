@@ -1,19 +1,3 @@
-<!--
-  Public README for github.com/ramchella/commonsense
-  Drop into the repo at the ROOT (not inside any subfolder) as README.md.
-  GitHub renders only the root README on the repo homepage.
-  This version is honest about what ships today vs. what's coming.
-  Last updated: 2026-05-04 by Ram.
-
-  Assumes the repo has been restructured so:
-    plugin/csense/        (was Claude Plugin/plugin/csense/)
-    docs/                 (was Claude Plugin/Docs/)
-    assets/architecture.png
-
-  If you haven't restructured yet, replace `./plugin/csense` below with
-  `"./Claude Plugin/plugin/csense"` (with quotes, because of the space).
--->
-
 <p align="center">
   <img src="assets/architecture.png" alt="Common Sense — the conscience layer for AI agents" width="720" />
 </p>
@@ -150,9 +134,12 @@ This is alpha. **v0.1.0-alpha. Phase 1a. Real, but unfinished.** I'm shipping in
 
 ## See it in action
 
-Five real catches from real Claude Code workflows.
+Five catches from real Claude Code workflows.
 
-> ⚠️ **Honest framing:** in Phase 1a Observe Mode, every action below proceeds. The catch is **logged**, not enforced. Phase 1b (late July 2026) flips logging into actual blocking on critical actions. The output you see is what *will be* enforced — and what's already auditable today.
+> ⚠️ **Honest framing.** Two things to know:
+>
+> 1. **Phase 1a is observe-only.** Every action below proceeds in v0.1.0; the catch is logged, not enforced. Phase 1b (late July 2026) flips logging into blocking on critical actions.
+> 2. **Demos 1, 2, 4, and 5 trigger today.** Demo 3 (cross-session memory) lands in v0.1.1 — the rule-based evaluator in v0.1.0 doesn't yet read `/memory/user-corrections.md`.
 
 ### 1. The secret-commit catch
 
@@ -184,7 +171,7 @@ $ "clean up the directory"
   Hint:      Did you mean: rm -rf src/legacy/ ?
 ```
 
-### 3. The cross-session memory catch
+### 3. The cross-session memory catch *(landing in v0.1.1)*
 
 ```
 $ "refactor the auth flow to use the new session model"
@@ -199,6 +186,8 @@ $ "refactor the auth flow to use the new session model"
 ```
 
 The rule you wrote on Tuesday survives until Friday. Across sessions. Across projects. **Without retyping it into every new conversation.**
+
+> *This demo previews the v0.1.1 LLM-powered evaluator. v0.1.0 does not yet read `/memory/user-corrections.md` at runtime.*
 
 ### 4. The tone rewrite
 
@@ -379,11 +368,13 @@ I'm Ram Chella, founder of Common Sense. **Building this in public.**
 
 If your team is dealing with agents in real workflows and you want to be a design partner, drop a message. Phase 1a alpha is by invitation; ~3 spots left.
 
+⭐ **If this resonated, star the repo.** It's the single signal that tells me to keep shipping.
+
 ---
 
 ## License
 
-[Apache License 2.0](LICENSE) — free to use, modify, and distribute. Includes patent grant and trademark protection. The trademark "Common Sense" as used in agentic AI is held by Ram Chella; forks must use a different name.
+[Apache License 2.0](LICENSE) — free to use, modify, and distribute. Includes Apache's explicit patent grant. **"Common Sense" is being established as a trademark in the agentic-AI category;** please use a distinct name for forks. Trademark filing in progress.
 
 ---
 
